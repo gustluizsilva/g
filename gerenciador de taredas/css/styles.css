@@ -1,0 +1,107 @@
+/* Estilos gerais */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1, h2 {
+  font-family: "Arial Rounded MT Bold", sans-serif;
+  font-weight: bold;
+}
+
+p {
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.form-group {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+input[type="text"] {
+  flex-grow: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+}
+
+button {
+  padding: 10px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100px; /* Largura fixa para os botões */
+}
+
+/* Espaçamento entre os botões */
+button:first-child {
+  margin-left: 0;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+/* Estilos da lista de tarefas */
+.task {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+
+.task .name {
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+.task .time {
+  font-size: 12px;
+  margin-right: 10px;
+  color: #999;
+}
+
+.completed-tasks {
+  margin-top: 30px;
+}
+
+/* Estilos para o tema dark */
+body.dark-mode {
+  background-color: #333;
+  color: #fff;
+}
+
+body.dark-mode .container {
+  color: #fff;
+}
+
+body.dark-mode .task {
+  background-color: #444;
+}
+
+body.dark-mode .task .name {
+  color: #fff;
+}
+
+body.dark-mode .task .time {
+  color: #999;
+}
+
+

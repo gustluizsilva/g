@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lista de Backlog</title>
+  <style>
+    body {
+      background-color: #111;
+      color: #fff;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: #333;
+      color: #fff;
+    }
+
+    .btn {
+      padding: 6px 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .form-container {
+      display: none;
+      margin-top: 10px;
+    }
+
+    .form-container input, .form-container select {
+      margin-bottom: 5px;
+    }
+
+    .form-container .btn {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Lista de Backlog</h1>
+  <button class="btn" onclick="toggleForm()">Criar Nova História</button>
+  <div id="formContainer" class="form-container">
+    <input type="text" id="idInput" placeholder="ID" readonly>
+    <input type="text" id="nomeInput" placeholder="Nome da História">
+    <input type="text" id="responsavelInput" placeholder="Responsável">
+    <select id="statusInput">
+      <option value="Backlog">Backlog</option>
+      <option value="Em Andamento">Em Andamento</option>
+      <option value="Concluído">Concluído</option>
+    </select>
+    <input type="text" id="pontosInput" placeholder="Pontos">
+    <button class="btn" onclick="adicionarTarefa()">Adicionar Tarefa</button>
+  </div>
+
+  <table id="backlogTable">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nome da História</th>
+        <th>Responsável</th>
+        <th>Status</th>
+        <th>Pontos</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+
+  <script>
+    var idCounter = 1;
+
+    // Função para alternar entre o modo claro e o modo escuro
+    function toggleDarkMode() {
+      var body = document.body;
+      body.classList.toggle("dark-mode");
+    }
+
+    // Função para exibir/ocultar o formulário de criação de história
+    function toggleForm() {
+      var formContainer = document.getElementById('formContainer');
+      formContainer.style.display = formContainer.style.display === 'none' ? 'block' : 'none';
+    }
+
+    // Função para adicionar uma tarefa
+    function adicionarTarefa() {
+      var idInput = document.getElementById('idInput');
+      var nome = document.getElementById('nomeInput').value;
+      var responsavel = document.getElementById('responsavelInput').value;
+      var status = document.getElementById('statusInput').value;
+      var pontos = document.getElementById('pontosInput').value;
+
+      var table = document.getElementById('backlogTable').getElementsByTagName('tbody')[0];
+      var row = table.insertRow();
+      var idCell = row.insertCell();
+      idCell.innerHTML = idInput.value;
+      var nomeCell = row.insertCell();
+      nomeCell.innerHTML = nome;
+      var responsavelCell = row.insertCell();
+      responsavelCell.innerHTML = responsavel;
+      var statusCell = row.insertCell();
+      statusCell.innerHTML = status;
+      var pontosCell = row.insertCell();
+      pontosCell.innerHTML = pontos;
+      var acoesCell = row.insertCell();
+      acoesCell.innerHTML = '<button class="btn" onclick="moverParaEmAndamento(this)">Em Andamento</button>';
+
+      // Atualiza o ID e o ordena
+      idInput.value = idCounter++;
+      ordenarIds();
+    }
+
+    // Função para mover uma tarefa para "Em Andamento"
+    function moverParaEmAndamento(button) {
+      var row = button.parentNode.parentNode;
+      var statusCell = row.getElementsByTagName('td')[3];
+      statusCell.innerHTML = 'Em Andamento';
+    }
+
+    // Função para ordenar os IDs do menor para o maior
+    function ordenarIds() {
+      var table = document.getElementById('backlogTable');
+      var rows = table.getElementsByTagName('tr');
+      for (var i = 1; i < rows.length; i++) {
+        var idCell = rows[i].getElementsByTagName('td')[0];
+        idCell.innerHTML = i;
+      }
+    }
+  </script>
+</body>
+</html>
